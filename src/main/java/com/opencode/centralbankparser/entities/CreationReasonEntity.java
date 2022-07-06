@@ -19,7 +19,7 @@ public class CreationReasonEntity {
     @Column(name = "code", length = 4, nullable = false)
     private String code;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 500, nullable = false)
     private String name;
 }
 

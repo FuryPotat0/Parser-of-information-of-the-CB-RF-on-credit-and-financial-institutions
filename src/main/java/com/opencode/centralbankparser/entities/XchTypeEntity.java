@@ -19,7 +19,7 @@ public class XchTypeEntity {
     @Column(name = "code", nullable = false)
     private Character code;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 300, nullable = false)
     private String name;
 }
 

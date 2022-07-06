@@ -1,0 +1,25 @@
+package com.opencode.centralbankparser.entities;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "pt_type")
+@NoArgsConstructor
+@Getter
+@Setter
+public class PtTypeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idPtType;
+
+    @Column(name = "code", length = 2, nullable = false)
+    private String code;
+
+    @Column(name = "name", length = 50, nullable = false)
+    private String name;
+}
+

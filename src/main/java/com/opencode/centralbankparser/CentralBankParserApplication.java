@@ -9,5 +9,4 @@ public class CentralBankParserApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CentralBankParserApplication.class, args);
 	}
-
 }

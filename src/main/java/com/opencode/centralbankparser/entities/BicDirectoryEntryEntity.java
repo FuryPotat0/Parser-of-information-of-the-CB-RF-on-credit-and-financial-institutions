@@ -30,7 +30,7 @@ public class BicDirectoryEntryEntity {
     private Ed807Entity ed807;
 
     @OneToMany(mappedBy = "bicDirectoryEntryEntity")
-    private List<SwibcsEntity> swibcsEntities = new ArrayList<>();
+    private List<SwbicsEntity> swibcsEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "bicDirectoryEntry")
     private List<AccountsEntity> accounts = new ArrayList<>();

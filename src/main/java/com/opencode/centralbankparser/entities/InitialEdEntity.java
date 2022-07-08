@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table
+@Table(name = "initial_ed")
 @NoArgsConstructor
 @Setter
 @Getter

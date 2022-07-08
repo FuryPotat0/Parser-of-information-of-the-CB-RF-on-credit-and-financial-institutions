@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class InfoTypeCodeEntity {
-    @Id
+    @Id //TODO rename all id fields
+    @Column(name = "id_info_type_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idInfoTypeCode;
 

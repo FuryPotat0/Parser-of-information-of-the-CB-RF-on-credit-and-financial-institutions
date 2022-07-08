@@ -50,10 +50,15 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.6.8.Final</version>
 		</dependency>
-
+<!--	parsing json-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
+		</dependency>
+<!--	parsing xml-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 	</dependencies>
 

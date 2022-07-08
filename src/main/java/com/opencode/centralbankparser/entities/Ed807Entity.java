@@ -1,5 +1,6 @@
 package com.opencode.centralbankparser.entities;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,15 +19,19 @@ public class Ed807Entity {
     private Long id_ed;
 
     @Column(name = "ed_no", length = 9, nullable = false)
+    @JacksonXmlProperty(localName = "EDNo")
     private String edNo;
 
     @Column(name = "ed_date", nullable = false)
+    @JacksonXmlProperty(localName = "EDDate")
     private Timestamp edDate;
 
     @Column(name = "ed_author", length = 10, nullable = false)
+    @JacksonXmlProperty(localName = "EDAuthor")
     private String edAuthor;
 
     @Column(name = "ed_receiver", length = 10)
+    @JacksonXmlProperty(localName = "EDReceiver")
     private String edReceiver;
 
     @ManyToOne
@@ -34,6 +39,7 @@ public class Ed807Entity {
     private CreationReasonEntity creationReasonEntity;
 
     @Column(name = "creation_date_time", nullable = false)
+    @JacksonXmlProperty(localName = "CreationDateTime")
     private Timestamp creationDateTime;
 
     @ManyToOne
@@ -41,9 +47,11 @@ public class Ed807Entity {
     private InfoTypeCodeEntity infoTypeCodeEntity;
 
     @Column(name = "business_day", nullable = false)
+    @JacksonXmlProperty(localName = "BusinessDay")
     private Timestamp businessDay;
 
     @Column(name = "directory_version")
+    @JacksonXmlProperty(localName = "DirectoryVersion")
     private Integer directoryVersion;
 }
 

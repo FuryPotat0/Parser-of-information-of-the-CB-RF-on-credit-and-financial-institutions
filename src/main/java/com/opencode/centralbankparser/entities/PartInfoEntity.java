@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Getter
 public class PartInfoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_part_info")
     private Long idPartInfo;
 
     @Column(name = "part_no", length = 6, nullable = false)

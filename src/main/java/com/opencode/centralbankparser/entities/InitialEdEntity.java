@@ -14,6 +14,8 @@ import java.sql.Timestamp;
 @Getter
 public class InitialEdEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_initial_ed")
     private Long idInitialEd;
 
     @Column(name = "ed_no", length = 9, nullable = false)

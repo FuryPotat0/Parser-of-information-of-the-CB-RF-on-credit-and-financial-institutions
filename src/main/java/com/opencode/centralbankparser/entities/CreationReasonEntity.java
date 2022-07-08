@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class CreationReasonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_creation_reason")
     private Long idCreationReason;
 
     @Column(name = "code", length = 4, nullable = false)

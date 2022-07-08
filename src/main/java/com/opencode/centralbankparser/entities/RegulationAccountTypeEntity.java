@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class RegulationAccountTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_regulation_account_type")
     private Long idRegulationAccountType;
 
     @Column(name = "code", length = 4, nullable = false)

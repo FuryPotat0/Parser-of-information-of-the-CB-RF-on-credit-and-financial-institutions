@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 public class AccRstrListEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_acc_rstr_list")
     public Long idAccRstrList;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

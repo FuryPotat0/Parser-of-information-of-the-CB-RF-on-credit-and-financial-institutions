@@ -17,13 +17,14 @@ import java.util.List;
 public class AccountsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_accounts;
+    @Column(name = "id_accounts")
+    private Long idAccounts;
 
     @Column(name = "account", length = 20, nullable = false)
     private String account;
 
     @Column(name = "ck", length = 2)
-    private String sk;
+    private String ck;
 
     @ManyToOne
     @JoinColumn(name = "id_account_status")

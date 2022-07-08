@@ -16,6 +16,7 @@ import java.util.List;
 public class BicDirectoryEntryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_bic_directory_entry")
     private Long idBicDirectoryEntry;
 
     @Column(name = "bic", length = 9, nullable = false)

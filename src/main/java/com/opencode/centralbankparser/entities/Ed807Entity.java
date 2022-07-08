@@ -16,7 +16,8 @@ import java.sql.Timestamp;
 public class Ed807Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_ed;
+    @Column(name = "id_ed")
+    private Long idEd;
 
     @Column(name = "ed_no", length = 9, nullable = false)
     @JacksonXmlProperty(localName = "EDNo")

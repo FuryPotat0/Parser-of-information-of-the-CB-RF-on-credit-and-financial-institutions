@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class AccountStatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_account_status")
     public Long idAccountStatus;
 
     @Column(name = "code", length = 4, nullable = false)

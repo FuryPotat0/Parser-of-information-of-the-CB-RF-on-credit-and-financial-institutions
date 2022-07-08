@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 public class ParticipantInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_participant_info")
     public Long idParticipantInfo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

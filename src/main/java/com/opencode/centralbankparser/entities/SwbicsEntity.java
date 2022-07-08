@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class SwbicsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_swbics")
     private Long idSwbics;
 
     @Column(name = "swibcs", length = 11, nullable = false)

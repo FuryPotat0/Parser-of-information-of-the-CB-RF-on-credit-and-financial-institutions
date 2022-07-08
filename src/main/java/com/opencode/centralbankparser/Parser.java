@@ -19,7 +19,8 @@ public class Parser {
             JsonNode root = xmlMapper.readTree(file);
             System.out.println(root.get("EDNo").asText());
 //            System.out.println(root.get("PartInfo"));
-            System.out.println(root.get("BICDirectoryEntry").get("BIC").asText());
+            JsonNode bicDirectory = root.get("BICDirectoryEntry");
+            System.out.println(bicDirectory.findValue("BIC").asText());
 //            System.out.println(ed807.getEdNo());
         } catch (Exception e){
             e.printStackTrace();

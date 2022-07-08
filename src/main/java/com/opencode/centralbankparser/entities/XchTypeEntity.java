@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class XchTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_xch_type")
     private Long idXchType;
 
     @Column(name = "code", nullable = false)

@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class AccRstrEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_acc_rstr")
     public Long idAccRstr;
 
     @Column(name = "code", length = 4, nullable = false)

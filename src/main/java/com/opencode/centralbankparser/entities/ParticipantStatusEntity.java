@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class ParticipantStatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_participant_status")
     private Long idParticipantStatus;
 
     @Column(name = "code", length = 4, nullable = false)

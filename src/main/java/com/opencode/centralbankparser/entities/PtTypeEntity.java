@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class PtTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_pt_type")
     private Long idPtType;
 
     @Column(name = "code", length = 2, nullable = false)

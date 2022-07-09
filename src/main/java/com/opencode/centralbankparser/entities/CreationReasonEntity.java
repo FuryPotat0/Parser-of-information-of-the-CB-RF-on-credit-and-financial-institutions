@@ -17,7 +17,7 @@ public class CreationReasonEntity {
     @Column(name = "id_creation_reason")
     private Long idCreationReason;
 
-    @Column(name = "code", length = 4, nullable = false)
+    @Column(name = "code", nullable = false, unique = true, length = 4)
     private String code;
 
     @Column(name = "name", length = 500, nullable = false)

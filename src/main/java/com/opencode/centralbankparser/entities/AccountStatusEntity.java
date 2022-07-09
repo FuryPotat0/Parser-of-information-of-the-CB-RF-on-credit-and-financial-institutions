@@ -17,7 +17,7 @@ public class AccountStatusEntity {
     @Column(name = "id_account_status")
     public Long idAccountStatus;
 
-    @Column(name = "code", length = 4, nullable = false)
+    @Column(name = "code", nullable = false, unique = true, length = 4)
     private String code;
 
     @Column(name = "name", length = 300, nullable = false)

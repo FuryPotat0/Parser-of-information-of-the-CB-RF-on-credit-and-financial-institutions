@@ -17,7 +17,7 @@ public class PtTypeEntity {
     @Column(name = "id_pt_type")
     private Long idPtType;
 
-    @Column(name = "code", length = 2, nullable = false)
+    @Column(name = "code", nullable = false, unique = true, length = 2)
     private String code;
 
     @Column(name = "name", length = 300, nullable = false)

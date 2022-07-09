@@ -17,7 +17,7 @@ public class InfoTypeCodeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idInfoTypeCode;
 
-    @Column(name = "code", length = 4, nullable = false)
+    @Column(name = "code", nullable = false, unique = true, length = 4)
     private String code;
 
     @Column(name = "name", length = 300, nullable = false)

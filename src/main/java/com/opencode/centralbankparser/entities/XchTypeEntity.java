@@ -17,7 +17,7 @@ public class XchTypeEntity {
     @Column(name = "id_xch_type")
     private Long idXchType;
 
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = false, unique = true)
     private Character code;
 
     @Column(name = "name", length = 300, nullable = false)

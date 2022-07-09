@@ -24,7 +24,8 @@ public class MainController {
         for (InfoTypeCodeEntity entity: infoTypeCodeDao.getAll()){
             System.out.println(entity.getCode());
         }
-
+        System.out.println(infoTypeCodeDao.findByCode("FIRR").get().getName());
+//        System.out.println(infoTypeCodeDao.findByCode("FEAR").get().getName());
         return "kek";
     }
 }

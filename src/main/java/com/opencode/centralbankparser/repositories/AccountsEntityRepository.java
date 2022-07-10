@@ -1,6 +1,6 @@
 package com.opencode.centralbankparser.repositories;
 
-import com.opencode.centralbankparser.entities.AccountsEntity;
+import com.opencode.centralbankparser.data.entities.AccountsEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

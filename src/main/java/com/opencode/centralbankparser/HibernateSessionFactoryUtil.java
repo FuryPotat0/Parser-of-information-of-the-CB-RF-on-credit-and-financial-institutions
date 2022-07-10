@@ -1,6 +1,7 @@
 package com.opencode.centralbankparser;
 
-import com.opencode.centralbankparser.entities.*;
+import com.opencode.centralbankparser.data.entities.*;
+import com.opencode.centralbankparser.references.entities.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

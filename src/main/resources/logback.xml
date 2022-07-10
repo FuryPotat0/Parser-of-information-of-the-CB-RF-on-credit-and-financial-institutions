@@ -21,7 +21,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.opencode.centralbankparser.daos" level="trace" additivity="false">
+    <logger name="com.opencode.centralbankparser.data.daos" level="trace" additivity="false">
         <appender-ref ref="FILE-ROLLING" />
     </logger>
     <logger name="com.opencode.centralbankparser.controllers" level="trace" additivity="false">

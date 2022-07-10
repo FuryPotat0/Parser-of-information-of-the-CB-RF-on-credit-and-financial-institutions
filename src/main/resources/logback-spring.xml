@@ -31,7 +31,7 @@
         </appender>
 
         <logger name="org.springframework" level="INFO"/>
-        <logger name="com.opencode.centralbankparser.daos" level="DEBUG"/>
+        <logger name="com.opencode.centralbankparser.data.daos" level="DEBUG"/>
         <logger name="com.opencode.centralbankparser.controllers" level="DEBUG"/>
         <root level="ERROR">
             <appender-ref ref="FILE-ROLLING"/>

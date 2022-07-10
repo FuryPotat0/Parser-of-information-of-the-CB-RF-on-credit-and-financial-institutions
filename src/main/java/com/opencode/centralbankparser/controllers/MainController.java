@@ -1,9 +1,9 @@
 package com.opencode.centralbankparser.controllers;
 
-import com.opencode.centralbankparser.FillReferences;
-import com.opencode.centralbankparser.daos.Ed807Dao;
-import com.opencode.centralbankparser.daos.InfoTypeCodeDao;
-import com.opencode.centralbankparser.entities.InfoTypeCodeEntity;
+import com.opencode.centralbankparser.references.FillReferences;
+import com.opencode.centralbankparser.data.daos.Ed807Dao;
+import com.opencode.centralbankparser.references.daos.InfoTypeCodeDao;
+import com.opencode.centralbankparser.references.entities.InfoTypeCodeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

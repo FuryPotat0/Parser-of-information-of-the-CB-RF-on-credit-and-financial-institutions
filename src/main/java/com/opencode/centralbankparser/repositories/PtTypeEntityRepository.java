@@ -1,4 +1,4 @@
-package com.opencode.centralbankparser.daos;
+package com.opencode.centralbankparser.repositories;
 
 import com.opencode.centralbankparser.entities.PtTypeEntity;
 import org.springframework.data.repository.CrudRepository;

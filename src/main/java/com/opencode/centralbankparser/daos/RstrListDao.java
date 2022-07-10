@@ -1,54 +1,53 @@
 package com.opencode.centralbankparser.daos;
 
 import com.opencode.centralbankparser.HibernateSessionFactoryUtil;
-import com.opencode.centralbankparser.entities.Ed807Entity;
+import com.opencode.centralbankparser.entities.RstrListEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public class Ed807Dao implements DaoInfoInterface<Ed807Entity> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Ed807Dao.class);
+public class RstrListDao implements DaoInfoInterface<RstrListEntity> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RstrListDao.class);
 
     @Override
-    public List<Ed807Entity> getAll() {
-        return (List<Ed807Entity>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Ed807Entity").list();
+    public List<RstrListEntity> getAll() {
+        return (List<RstrListEntity>) HibernateSessionFactoryUtil.getSessionFactory().openSession()
+                .createQuery("FROM RstrListEntity").list();
     }
 
     @Override
-    public void save(Ed807Entity entity) {
+    public void save(RstrListEntity entity) {
         Transaction tx = null;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
             session.save(entity);
             tx.commit();
-            LOGGER.info("Ed807 with id={} was saved", entity.getIdEd());
+            LOGGER.info("RstrList with id={} was saved", entity.getIdRstrList());
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
-            LOGGER.error("Ed807 wasn't saved");
+            LOGGER.error("RstrList wasn't saved");
             LOGGER.error(e.getMessage());
         }
     }
 
     @Override
-    public void update(Ed807Entity entity) {
+    public void update(RstrListEntity entity) {
         Transaction tx = null;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
             session.update(entity);
             tx.commit();
-            LOGGER.info("Ed807 with id={} was updated", entity.getIdEd());
+            LOGGER.info("RstrList with id={} was updated", entity.getIdRstrList());
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
-            LOGGER.error("Ed807 wasn't updated");
+            LOGGER.error("RstrList wasn't updated");
             LOGGER.error(e.getMessage());
         }
     }
@@ -58,29 +57,29 @@ public class Ed807Dao implements DaoInfoInterface<Ed807Entity> {
         Transaction tx = null;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            Ed807Entity ed807 = session.get(Ed807Entity.class, id);
-            session.delete(ed807);
+            RstrListEntity rstrList = session.get(RstrListEntity.class, id);
+            session.delete(rstrList);
             tx.commit();
-            LOGGER.info("Ed807 with id={} was deleted", ed807.getIdEd());
+            LOGGER.info("RstrList with id={} was deleted", rstrList.getIdRstrList());
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
-            LOGGER.error("Ed807 wasn't deleted");
+            LOGGER.error("RstrList wasn't deleted");
             LOGGER.error(e.getMessage());
         }
     }
 
     @Override
-    public Ed807Entity findById(Long id) {
+    public RstrListEntity findById(Long id) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-            Ed807Entity ed807 = session.get(Ed807Entity.class, id);
-            if (ed807 != null)
-                LOGGER.info("Ed807 with id={} was found", id);
+            RstrListEntity rstrList = session.get(RstrListEntity.class, id);
+            if (rstrList != null)
+                LOGGER.info("RstrList with id={} was found", id);
             else
-                LOGGER.warn("Ed807 with id={} wasn't found", id);
-            return ed807;
+                LOGGER.warn("RstrList with id={} wasn't found", id);
+            return rstrList;
         } catch (HibernateException e) {
-            LOGGER.error("Exception while finding Ed807 with id={}", id);
+            LOGGER.error("Exception while finding RstrList with id={}", id);
             LOGGER.error(e.getMessage());
             return null;
         }
@@ -91,14 +90,14 @@ public class Ed807Dao implements DaoInfoInterface<Ed807Entity> {
         Transaction tx = null;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            for (Ed807Entity ed807 : getAll())
-                session.delete(ed807);
+            for (RstrListEntity rstrList : getAll())
+                session.delete(rstrList);
             tx.commit();
-            LOGGER.info("All Ed807 was deleted");
+            LOGGER.info("All RstrList was deleted");
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
-            LOGGER.error("Can't delete all Ed807");
+            LOGGER.error("Can't delete all RstrList");
             LOGGER.error(e.getMessage());
         }
     }

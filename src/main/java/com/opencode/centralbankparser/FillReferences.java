@@ -2,8 +2,8 @@ package com.opencode.centralbankparser;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.opencode.centralbankparser.daos.*;
 import com.opencode.centralbankparser.entities.*;
+import com.opencode.centralbankparser.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;

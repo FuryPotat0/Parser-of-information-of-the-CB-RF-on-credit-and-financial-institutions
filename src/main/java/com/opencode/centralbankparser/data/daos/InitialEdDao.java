@@ -8,9 +8,11 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class InitialEdDao implements DaoDataInterface<InitialEdEntity> {
     private static final Logger LOGGER = LoggerFactory.getLogger(InitialEdDao.class);
 

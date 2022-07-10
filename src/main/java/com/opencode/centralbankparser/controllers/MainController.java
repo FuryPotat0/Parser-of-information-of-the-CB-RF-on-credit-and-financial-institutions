@@ -1,9 +1,9 @@
 package com.opencode.centralbankparser.controllers;
 
-import com.opencode.centralbankparser.references.FillReferences;
 import com.opencode.centralbankparser.data.daos.Ed807Dao;
-import com.opencode.centralbankparser.references.daos.InfoTypeCodeDao;
+import com.opencode.centralbankparser.references.FillReferences;
 import com.opencode.centralbankparser.references.entities.InfoTypeCodeEntity;
+import com.opencode.centralbankparser.references.services.InfoTypeCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +17,14 @@ public class MainController {
     private Ed807Dao ed807Dao;
 
     @Autowired
-    private InfoTypeCodeDao infoTypeCodeDao;
+    private InfoTypeCodeService infoTypeCodeService;
 
     @GetMapping("/")
     public String getMain(){
-        for (InfoTypeCodeEntity entity: infoTypeCodeDao.getAll()){
+        for (InfoTypeCodeEntity entity: infoTypeCodeService.getAll()){
             System.out.println(entity.getCode());
         }
-        System.out.println(infoTypeCodeDao.findByCode("FIRR").get().getName());
+        System.out.println(infoTypeCodeService.findByCode("FIRR").get().getName());
 //        System.out.println(infoTypeCodeDao.findByCode("FEAR").get().getName());
         return "kek";
     }

@@ -9,11 +9,13 @@ import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class XchTypeDao implements DaoReferencesInterface<XchTypeEntity> {
     private static final Logger LOGGER = LoggerFactory.getLogger(XchTypeDao.class);
 

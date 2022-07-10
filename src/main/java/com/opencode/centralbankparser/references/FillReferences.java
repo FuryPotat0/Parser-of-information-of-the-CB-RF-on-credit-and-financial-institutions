@@ -3,7 +3,7 @@ package com.opencode.centralbankparser.references;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencode.centralbankparser.references.entities.*;
-import com.opencode.centralbankparser.repositories.*;
+import com.opencode.centralbankparser.references.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,27 +16,27 @@ import java.util.List;
 @Component
 public class FillReferences {
     @Autowired
-    private InfoTypeCodeEntityRepository infoTypeCodeEntityRepository;
+    private InfoTypeCodeService infoTypeCodeService;
     @Autowired
-    private CreationReasonEntityRepository creationReasonEntityRepository;
+    private CreationReasonService creationReasonService;
     @Autowired
-    private ChangeTypeEntityRepository changeTypeEntityRepository;
+    private ChangeTypeService changeTypeService;
     @Autowired
-    private RegulationAccountTypeEntityRepository regulationAccountTypeEntityRepository;
+    private RegulationAccountTypeService regulationAccountTypeService;
     @Autowired
-    private AccountStatusEntityRepository accountStatusEntityRepository;
+    private AccountStatusService accountStatusService;
     @Autowired
-    private AccRstrEntityRepository accRstrEntityRepository;
+    private AccRstrService accRstrService;
     @Autowired
-    private SrvcsEntityRepository srvcsEntityRepository;
+    private SrvcsService srvcsService;
     @Autowired
-    private ParticipantStatusEntityRepository participantStatusEntityRepository;
+    private ParticipantStatusService participantStatusService;
     @Autowired
-    private RstrEntityRepository rstrEntityRepository;
+    private RstrService rstrService;
     @Autowired
-    private XchTypeEntityRepository xchTypeEntityRepository;
+    private XchTypeService xchTypeService;
     @Autowired
-    private PtTypeEntityRepository ptTypeEntityRepository;
+    private PtTypeService ptTypeService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillReferences() throws IOException {
@@ -58,7 +58,7 @@ public class FillReferences {
         List<InfoTypeCodeEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/info_type_code.json"), new TypeReference<>() {});
         for (InfoTypeCodeEntity entity: list){
-            infoTypeCodeEntityRepository.save(entity);
+            infoTypeCodeService.save(entity);
         }
     }
 
@@ -66,7 +66,7 @@ public class FillReferences {
         List<CreationReasonEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/creation_reason.json"), new TypeReference<>() {});
         for (CreationReasonEntity entity: list){
-            creationReasonEntityRepository.save(entity);
+            creationReasonService.save(entity);
         }
     }
 
@@ -74,7 +74,7 @@ public class FillReferences {
         List<ChangeTypeEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/change_type.json"), new TypeReference<>() {});
         for (ChangeTypeEntity entity: list){
-            changeTypeEntityRepository.save(entity);
+            changeTypeService.save(entity);
         }
     }
 
@@ -82,7 +82,7 @@ public class FillReferences {
         List<RegulationAccountTypeEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/regulation_account_type.json"), new TypeReference<>() {});
         for (RegulationAccountTypeEntity entity: list){
-            regulationAccountTypeEntityRepository.save(entity);
+            regulationAccountTypeService.save(entity);
         }
     }
 
@@ -90,7 +90,7 @@ public class FillReferences {
         List<AccountStatusEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/account_status.json"), new TypeReference<>() {});
         for (AccountStatusEntity entity: list){
-            accountStatusEntityRepository.save(entity);
+            accountStatusService.save(entity);
         }
     }
 
@@ -98,7 +98,7 @@ public class FillReferences {
         List<AccRstrEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/acc_rstr.json"), new TypeReference<>() {});
         for (AccRstrEntity entity: list){
-            accRstrEntityRepository.save(entity);
+            accRstrService.save(entity);
         }
     }
 
@@ -106,7 +106,7 @@ public class FillReferences {
         List<SrvcsEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/srvcs.json"), new TypeReference<>() {});
         for (SrvcsEntity entity: list){
-            srvcsEntityRepository.save(entity);
+            srvcsService.save(entity);
         }
     }
 
@@ -114,7 +114,7 @@ public class FillReferences {
         List<ParticipantStatusEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/participant_status.json"), new TypeReference<>() {});
         for (ParticipantStatusEntity entity: list){
-            participantStatusEntityRepository.save(entity);
+            participantStatusService.save(entity);
         }
     }
 
@@ -122,7 +122,7 @@ public class FillReferences {
         List<RstrEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/rstr.json"), new TypeReference<>() {});
         for (RstrEntity entity: list){
-            rstrEntityRepository.save(entity);
+            rstrService.save(entity);
         }
     }
 
@@ -130,7 +130,7 @@ public class FillReferences {
         List<XchTypeEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/xch_type.json"), new TypeReference<>() {});
         for (XchTypeEntity entity: list){
-            xchTypeEntityRepository.save(entity);
+            xchTypeService.save(entity);
         }
     }
 
@@ -138,7 +138,7 @@ public class FillReferences {
         List<PtTypeEntity> list = objectMapper.readValue(
                 new URL("file:src/main/resources/static/referencesData/pt_type.json"), new TypeReference<>() {});
         for (PtTypeEntity entity: list){
-            ptTypeEntityRepository.save(entity);
+            ptTypeService.save(entity);
         }
     }
 }

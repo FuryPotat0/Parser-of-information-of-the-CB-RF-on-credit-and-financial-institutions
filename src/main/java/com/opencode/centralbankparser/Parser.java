@@ -17,7 +17,7 @@ public class Parser {
             XmlMapper xmlMapper = new XmlMapper();
 //            Ed807Entity ed807 = xmlMapper.readValue(file, Ed807Entity.class);
             JsonNode root = xmlMapper.readTree(file);
-            System.out.println(root.get("EDNo").asText());
+            System.out.println(root.findValue("EDNo").asText());
 //            System.out.println(root.get("PartInfo"));
             JsonNode bicDirectory = root.get("BICDirectoryEntry");
             System.out.println(bicDirectory.findValue("BIC").asText());

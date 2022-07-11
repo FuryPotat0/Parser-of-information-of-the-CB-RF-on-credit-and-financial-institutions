@@ -15,20 +15,16 @@ import java.sql.Timestamp;
 public class InitialEdEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_initial_ed")
+    @Column(name = "ID_INITIAL_ED")
     private Long idInitialEd;
 
-    @Column(name = "ed_no", length = 9, nullable = false)
+    @Column(name = "ED_NO", length = 9, nullable = false)
     private String edNo;
 
-    @Column(name = "ed_date", nullable = false)
+    @Column(name = "ED_DATE", nullable = false)
     private Timestamp edDate;
 
-    @Column(name = "ed_author", length = 10, nullable = false)
+    @Column(name = "ED_AUTHOR", length = 10, nullable = false)
     private String edAuthor;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private Ed807Entity ed807;
 }
 

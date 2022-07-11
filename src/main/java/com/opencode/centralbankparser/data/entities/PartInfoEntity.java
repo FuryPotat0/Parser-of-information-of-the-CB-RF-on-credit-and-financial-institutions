@@ -7,27 +7,23 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "part_info")
+@Table(name = "PART_INFO")
 @NoArgsConstructor
 @Setter
 @Getter
 public class PartInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_part_info")
+    @Column(name = "ID_PART_INFO")
     private Long idPartInfo;
 
-    @Column(name = "part_no", length = 6, nullable = false)
+    @Column(name = "PART_NO", length = 6, nullable = false)
     private String partNo;
 
-    @Column(name = "part_quantity", length = 6, nullable = false)
+    @Column(name = "PART_QUANTITY", length = 6, nullable = false)
     private String partQuantity;
 
-    @Column(name = "part_aggregate_id", length = 27, nullable = false)
+    @Column(name = "PART_AGGREGATE_ID", length = 27, nullable = false)
     private String partAggregateId;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private Ed807Entity ed807;
 }
 

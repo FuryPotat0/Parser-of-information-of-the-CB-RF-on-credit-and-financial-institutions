@@ -9,21 +9,25 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "rstr_list")
+@Table(name = "RSTR_LIST")
 @NoArgsConstructor
 @Getter
 @Setter
 public class RstrListEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_rstr_list")
+    @Column(name = "ID_RSTR_LIST")
     public Long idRstrList;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_rstr", nullable = false)
+    @JoinColumn(name = "ID_RSTR", nullable = false)
     private RstrEntity rstr;
 
-    @Column(name = "rstr_date", nullable = false)
+    @Column(name = "RSTR_DATE", nullable = false)
     private Timestamp rstrDate;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_PARTICIPANT_INFO")
+    private ParticipantInfoEntity participantInfoEntity;
 }
 

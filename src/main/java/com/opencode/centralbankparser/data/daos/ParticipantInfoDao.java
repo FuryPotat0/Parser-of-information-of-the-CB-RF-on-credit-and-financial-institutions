@@ -31,8 +31,6 @@ public class ParticipantInfoDao implements DaoDataInterface<ParticipantInfoEntit
             tx.commit();
             LOGGER.info("ParticipantInfo with id={} was saved", entity.getIdParticipantInfo());
         } catch (HibernateException e) {
-            if (tx != null)
-                tx.rollback();
             LOGGER.error("ParticipantInfo wasn't saved");
             LOGGER.error(e.getMessage());
         }

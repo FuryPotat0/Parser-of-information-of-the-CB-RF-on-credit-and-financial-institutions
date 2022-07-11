@@ -1,6 +1,5 @@
 package com.opencode.centralbankparser.data.entities;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.opencode.centralbankparser.references.entities.CreationReasonEntity;
 import com.opencode.centralbankparser.references.entities.InfoTypeCodeEntity;
 import lombok.Getter;
@@ -9,52 +8,58 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "ed807")
+@Table(name = "ED807")
 @Setter
 @Getter
 @NoArgsConstructor
 public class Ed807Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_ed")
+    @Column(name = "ID_ED")
     private Long idEd;
 
-    @Column(name = "ed_no", length = 9, nullable = false)
-    @JacksonXmlProperty(localName = "EDNo")
+    @Column(name = "ED_NO", length = 9, nullable = false)
     private String edNo;
 
-    @Column(name = "ed_date", nullable = false)
-    @JacksonXmlProperty(localName = "EDDate")
+    @Column(name = "ED_DATE", nullable = false)
     private Timestamp edDate;
 
-    @Column(name = "ed_author", length = 10, nullable = false)
-    @JacksonXmlProperty(localName = "EDAuthor")
+    @Column(name = "ED_AUTHOR", length = 10, nullable = false)
     private String edAuthor;
 
-    @Column(name = "ed_receiver", length = 10)
-    @JacksonXmlProperty(localName = "EDReceiver")
+    @Column(name = "ED_RECEIVER", length = 10)
     private String edReceiver;
 
-    @ManyToOne
-    @JoinColumn(name = "id_creation_reason", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_CREATION_REASON", nullable = false)
     private CreationReasonEntity creationReasonEntity;
 
-    @Column(name = "creation_date_time", nullable = false)
-    @JacksonXmlProperty(localName = "CreationDateTime")
+    @Column(name = "CREATION_DATE_TIME", nullable = false)
     private Timestamp creationDateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "id_info_type_code")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_INFO_TYPE_CODE", nullable = false)
     private InfoTypeCodeEntity infoTypeCodeEntity;
 
-    @Column(name = "business_day", nullable = false)
-    @JacksonXmlProperty(localName = "BusinessDay")
+    @Column(name = "BUSINESS_DAY", nullable = false)
     private Timestamp businessDay;
 
-    @Column(name = "directory_version")
-    @JacksonXmlProperty(localName = "DirectoryVersion")
+    @Column(name = "DIRECTORY_VERSION")
     private Integer directoryVersion;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PART_INFO")
+    private PartInfoEntity partInfoEntity;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_INITIAL_ED")
+    private InitialEdEntity initialEdEntity;
+
+    @OneToMany(mappedBy = "ed807")
+    private List<BicDirectoryEntryEntity> bicDirectoryEntryEntities = new ArrayList<>();
 }
 

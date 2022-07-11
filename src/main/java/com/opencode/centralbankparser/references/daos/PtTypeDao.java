@@ -77,7 +77,7 @@ public class PtTypeDao implements DaoReferencesInterface<PtTypeEntity> {
     @Override
     public Optional<PtTypeEntity> findByCode(String code) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
-            String hql = "FROM PtTypeEntity WHERE code = ?0";
+            String hql = "FROM PtTypeEntity WHERE CODE = ?0";
             Query query = session.createQuery(hql).setParameter(0, code);
             PtTypeEntity ptType = (PtTypeEntity) query.getSingleResult();
             LOGGER.info("Found PtType with code={} and id={}", code, ptType.getIdPtType());

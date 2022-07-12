@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNTS")
@@ -48,8 +46,5 @@ public class AccountsEntity {
     @ManyToOne
     @JoinColumn(name = "ID_BIC_DIRECTORY_ENTRY")
     private BicDirectoryEntryEntity bicDirectoryEntry;
-
-    @OneToMany(mappedBy = "accounts")
-    private List<AccRstrListEntity> accRsrtListEntities = new ArrayList<>();
 }
 

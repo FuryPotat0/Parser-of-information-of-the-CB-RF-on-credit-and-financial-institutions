@@ -30,8 +30,8 @@ public class Ed807Dao implements DaoDataInterface<Ed807Entity> {
             tx.commit();
             LOGGER.info("Ed807 with id={} was saved", entity.getIdEd());
         } catch (HibernateException e) {
-//            if (tx != null)
-//                tx.rollback();
+            if (tx != null)
+                tx.rollback();
             LOGGER.error("Ed807 wasn't saved");
             LOGGER.error(e.getMessage());
         }

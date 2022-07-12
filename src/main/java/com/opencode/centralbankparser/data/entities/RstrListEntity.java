@@ -19,7 +19,7 @@ public class RstrListEntity {
     @Column(name = "ID_RSTR_LIST")
     public Long idRstrList;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_RSTR", nullable = false)
     private RstrEntity rstr;
 

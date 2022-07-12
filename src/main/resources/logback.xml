@@ -27,7 +27,13 @@
     <logger name="com.opencode.centralbankparser.references.daos" level="trace" additivity="false">
         <appender-ref ref="FILE-ROLLING" />
     </logger>
-    <logger name="com.opencode.centralbankparser.controllers" level="trace" additivity="false">
+    <logger name="com.opencode.centralbankparser.maincontroller" level="trace" additivity="false">
+        <appender-ref ref="FILE-ROLLING" />
+    </logger>
+    <logger name="com.opencode.centralbankparser.data.controllers" level="trace" additivity="false">
+        <appender-ref ref="FILE-ROLLING" />
+    </logger>
+    <logger name="com.opencode.centralbankparser.references.controllers" level="trace" additivity="false">
         <appender-ref ref="FILE-ROLLING" />
     </logger>
 

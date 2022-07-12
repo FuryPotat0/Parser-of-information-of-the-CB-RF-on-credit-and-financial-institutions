@@ -7,9 +7,10 @@ import com.opencode.centralbankparser.data.services.*;
 import com.opencode.centralbankparser.references.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -62,20 +63,22 @@ public class Parser {
     private AccRstrService accRstrService;
     public void deserializeXml() {
         try {
-//            File file = new File("test-data.xml");
-            File file = new File("full_no_changes.xml");
+            File file = new File("test-data.xml");
             XmlMapper xmlMapper = new XmlMapper();
-//            Ed807Entity ed807 = xmlMapper.readValue(file, Ed807Entity.class);
             JsonNode root = xmlMapper.readTree(file);
-//            System.out.println(root.findValue("EDNo").asText());
-//            System.out.println(root.get("PartInfo"));
-//            JsonNode bicDirectory = root.get("BICDirectoryEntry");
-//            System.out.println(bicDirectory.findValue("BIC").asText());
-//            System.out.println(ed807.getEdNo());
             saveEd807(root);
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void deserializeXml(MultipartFile file) throws ParserConfigurationException, IOException, ParseException {
+        File tempFile = new File("files/import.xml");
+        OutputStream os = new FileOutputStream(tempFile);
+        os.write(file.getBytes());
+        XmlMapper xmlMapper = new XmlMapper();
+        JsonNode root = xmlMapper.readTree(tempFile);
+        saveEd807(root);
     }
 
     private void saveEd807(JsonNode node) throws ParseException, UnsupportedEncodingException {
@@ -113,9 +116,8 @@ public class Parser {
         if (node.get("InitialED") != null)
             saveInitialEd(entity, node.get("InitialED"));
 
-        saveBicDirectories(entity, node.get("BICDirectoryEntry"));
-
         ed807Service.save(entity);
+        saveBicDirectories(entity, node.get("BICDirectoryEntry"));
     }
 
     private void savePartInfo(Ed807Entity ed807, JsonNode node){
@@ -156,6 +158,9 @@ public class Parser {
                 changeTypeService.findByCode(node.findValue("ChangeType").asText()).isPresent())
             entity.setChangeType(changeTypeService.findByCode(node.findValue("ChangeType").asText()).get());
 
+        entity.setEd807(ed807);
+        bicDirectoryEntryService.save(entity);
+
         saveParticipantInfo(entity, node.get("ParticipantInfo"));
 
         if (node.get("SWBICS") != null && node.get("SWBICS").isArray())
@@ -169,10 +174,6 @@ public class Parser {
         else if (node.get("Accounts") != null) {
             saveAccount(entity, node.get("Accounts"));
         }
-
-//        entity.setEd807(ed807);
-        bicDirectoryEntryService.save(entity);
-        ed807.getBicDirectoryEntryEntities().add(entity);
     }
 
     private void saveParticipantInfo(BicDirectoryEntryEntity bicDirectoryEntry, JsonNode node) throws ParseException, UnsupportedEncodingException {
@@ -180,7 +181,6 @@ public class Parser {
 
         byte[] bytes = node.findValue("NameP").asText().getBytes("Windows-1251");
         String value = new String(bytes, Charset.forName("cp1251"));
-        System.out.println(value);
         entity.setNameP(value);
 
         if (node.findValue("EngName") != null)
@@ -238,6 +238,8 @@ public class Parser {
             entity.setParticipantStatus(
                     participantStatusService.findByCode(node.findValue("ParticipantStatus").asText()).get());
 
+        entity.setBicDirectoryEntryEntity(bicDirectoryEntry);
+        participantInfoService.save(entity);
 
         if (node.get("RstrList") != null && node.get("RstrList").isArray())
             saveRstrLists(entity, node.get("RstrList"));
@@ -245,8 +247,6 @@ public class Parser {
             saveRstrList(entity, node.get("RstrList"));
         }
 
-        participantInfoService.save(entity);
-        bicDirectoryEntry.setParticipantInfoEntity(entity);
     }
 
     private void saveRstrLists(ParticipantInfoEntity participantInfo, JsonNode node) throws ParseException {
@@ -264,10 +264,9 @@ public class Parser {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedDate = date.parse(node.findValue("RstrDate").asText());
         entity.setRstrDate(new Timestamp(parsedDate.getTime()));
+        entity.setParticipantInfoEntity(participantInfo);
 
-//        entity.setParticipantInfoEntity(participantInfo);
         rstrListService.save(entity);
-        participantInfo.getRstrListEntities().add(entity);
     }
 
     private void saveSwbicsList(BicDirectoryEntryEntity bicDirectoryEntry, JsonNode node){
@@ -281,9 +280,8 @@ public class Parser {
 
         entity.setSwbics(node.findValue("SWBIC").asText());
         entity.setDefaultSwbic(Objects.equals(node.findValue("DefaultSWBIC").asText(), "1"));
-
+        entity.setBicDirectoryEntryEntity(bicDirectoryEntry);
         swbicsService.save(entity);
-        bicDirectoryEntry.getSwibcsEntities().add(entity);
     }
 
     private void saveAccounts(BicDirectoryEntryEntity bicDirectoryEntry, JsonNode node) throws ParseException {
@@ -316,14 +314,13 @@ public class Parser {
         if (accountStatusService.findByCode(node.findValue("AccountStatus").asText()).isPresent())
             entity.setAccountStatus(accountStatusService.findByCode(node.findValue("AccountStatus").asText()).get());
 
+        entity.setBicDirectoryEntry(bicDirectoryEntry);
+        accountsService.save(entity);
         if (node.get("AccRstrList") != null && node.get("AccRstrList").isArray())
             saveAccRstrLists(entity, node.get("AccRstrList"));
         else if (node.get("Accounts") != null) {
             saveAccRstrList(entity, node.get("AccRstrList"));
         }
-
-        accountsService.save(entity);
-        bicDirectoryEntry.getAccounts().add(entity);
     }
 
     private void saveAccRstrLists(AccountsEntity accounts, JsonNode node) throws ParseException {
@@ -344,9 +341,9 @@ public class Parser {
 
         if (node.findValue("SuccessorBIC") != null)
             entity.setSuccessorBic(node.findValue("SuccessorBIC").asText());
+        entity.setAccounts(accounts);
 
         accRstrListService.save(entity);
-        accounts.getAccRsrtListEntities().add(entity);
     }
 }
 

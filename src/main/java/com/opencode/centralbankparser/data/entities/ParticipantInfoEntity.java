@@ -10,8 +10,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "PARTICIPANT_INFO")
@@ -23,10 +21,6 @@ public class ParticipantInfoEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_PARTICIPANT_INFO")
     public Long idParticipantInfo;
-
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "ID_BIC_DIRECTORY_ENTRY", nullable = false)
-//    private BicDirectoryEntryEntity bicDirectoryEntry;
 
     @Column(name = "NAME_P", length = 160, nullable = false)
     private String nameP;
@@ -64,26 +58,27 @@ public class ParticipantInfoEntity {
     @Column(name = "DATE_OUT")
     private Timestamp dateOut;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PT_TYPE", nullable = false)
     private PtTypeEntity ptType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_SRVCS", nullable = false)
     private SrvcsEntity srvcs;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_XCH_TYPE", nullable = false)
     private XchTypeEntity xchType;
 
     @Column(name = "UID", length = 10, nullable = false)
     private String uid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PARTICIPANT_STATUS", nullable = false)
     private ParticipantStatusEntity participantStatus;
 
-    @OneToMany(mappedBy = "participantInfoEntity")
-    private List<RstrListEntity> rstrListEntities = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "id_bic_directory_entry")
+    private BicDirectoryEntryEntity bicDirectoryEntryEntity;
 }
 

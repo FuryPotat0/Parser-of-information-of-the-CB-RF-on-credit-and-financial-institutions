@@ -26,6 +26,5 @@ public class SwbicsEntity {
     @ManyToOne
     @JoinColumn(name = "ID_BIC_DIRECTORY_ENTRY")
     private BicDirectoryEntryEntity bicDirectoryEntryEntity;
-
 }
 

@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ED807")
@@ -34,14 +32,14 @@ public class Ed807Entity {
     @Column(name = "ED_RECEIVER", length = 10)
     private String edReceiver;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CREATION_REASON", nullable = false)
     private CreationReasonEntity creationReasonEntity;
 
     @Column(name = "CREATION_DATE_TIME", nullable = false)
     private Timestamp creationDateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_INFO_TYPE_CODE", nullable = false)
     private InfoTypeCodeEntity infoTypeCodeEntity;
 
@@ -49,7 +47,7 @@ public class Ed807Entity {
     private Timestamp businessDay;
 
     @Column(name = "DIRECTORY_VERSION")
-    private Integer directoryVersion;
+    private String directoryVersion;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PART_INFO")
@@ -59,7 +57,5 @@ public class Ed807Entity {
     @JoinColumn(name = "ID_INITIAL_ED")
     private InitialEdEntity initialEdEntity;
 
-    @OneToMany(mappedBy = "ed807")
-    private List<BicDirectoryEntryEntity> bicDirectoryEntryEntities = new ArrayList<>();
 }
 

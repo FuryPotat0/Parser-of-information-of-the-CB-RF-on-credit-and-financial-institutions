@@ -5,11 +5,13 @@ import com.opencode.centralbankparser.data.entities.BicDirectoryEntryEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
@@ -100,6 +102,25 @@ public class BicDirectoryEntryDao implements DaoDataInterface<BicDirectoryEntryE
                 tx.rollback();
             LOGGER.error("Can't delete all BicDirectoryEntry");
             LOGGER.error(e.getMessage());
+        }
+    }
+
+    public List<BicDirectoryEntryEntity> findByEd807Id(Long edId){
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
+            String hql = "FROM BicDirectoryEntryEntity WHERE ed807.idEd = ?0";
+
+            Query query = session.createQuery(hql).setParameter(0, edId);
+            List<BicDirectoryEntryEntity> list = (List<BicDirectoryEntryEntity>) query.list();
+            LOGGER.info("Found {} BicDirectoryEntryEntities", list.size());
+            return list;
+        } catch (HibernateException e){
+            LOGGER.error("Exception while finding BicDirectoryEntryEntity with Ed807 id={}", edId);
+            LOGGER.error(e.getMessage());
+            return null;
+        } catch (NoResultException e){
+            LOGGER.error("BicDirectoryEntryEntities with Ed807 id={} weren't found", edId);
+            LOGGER.error(e.getMessage());
+            return null;
         }
     }
 }

@@ -19,7 +19,7 @@ public class AccRstrListEntity {
     @Column(name = "ID_ACC_RSTR_LIST")
     public Long idAccRstrList;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_ACC_RSTR", nullable = false)
     private AccRstrEntity accRstr;
 
@@ -32,6 +32,5 @@ public class AccRstrListEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ACCOUNTS")
     private AccountsEntity accounts;
-
 }
 

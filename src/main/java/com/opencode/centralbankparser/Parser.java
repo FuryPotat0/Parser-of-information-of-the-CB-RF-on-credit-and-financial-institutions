@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -72,12 +73,9 @@ public class Parser {
         }
     }
 
-    public void deserializeXml(MultipartFile file) throws ParserConfigurationException, IOException, ParseException {
-        File tempFile = new File("files/import.xml");
-        OutputStream os = new FileOutputStream(tempFile);
-        os.write(file.getBytes());
+    public void deserializeXml(MultipartFile file) throws IOException, ParseException {
         XmlMapper xmlMapper = new XmlMapper();
-        JsonNode root = xmlMapper.readTree(tempFile);
+        JsonNode root = xmlMapper.readTree(file.getBytes());
         saveEd807(root);
     }
 

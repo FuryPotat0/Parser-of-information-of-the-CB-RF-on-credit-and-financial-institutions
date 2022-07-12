@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ed807 edit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+<h2 class="ms-2" th:text="'Запрс с номером ЭС: ' + ${ed807.edNo}"></h2>
+<p class="text-danger ms-3" th:text="${errorText}"></p>
+<form method="post">
+    <p>
+        <label>Номер ЭС в течение дня</label>
+        <input type="text" th:value="${ed807.edNo}" name="edNo">
+    </p>
+    <p>
+        <label>Дата составления ЭС</label>
+        <input type="date" th:value="${ed807.edDate}" name="edDate">
+    </p>
+    <p>
+        <label>Уникальный идентификатор составителя ЭС - УИС</label>
+        <input type="text" th:value="${ed807.edAuthor}" name="edAuthor">
+    </p>
+    <p><label>Уникальный идентификатор получателя ЭС</label>
+        <input type="text" th:value="${ed807.edReceiver}" name="edReceiver"></p>
+    <p class="w-25">
+        <select class="form-control" name="creationReasonEntity">
+            <option th:value="${ed807.creationReasonEntity.idCreationReason}" th:text="${ed807.creationReasonEntity.code}"></option>
+            <option th:each="reason : ${creationReasonList}" th:value="${reason.idCreationReason}"
+                    th:text="${reason.code}"></option>
+        </select>
+    </p>
+    <p>
+        <label>Дата и время создания ЭС</label>
+        <input type="date" th:value="${ed807.creationDateTime}" name="creationDateTime">
+    </p>
+    <p class="w-25">
+        <select class="form-control" name="infoTypeCodeEntity">
+            <option th:value="${ed807.infoTypeCodeEntity.idInfoTypeCode}" th:text="${ed807.infoTypeCodeEntity.code}"></option>
+            <option th:each="infoTypeCode : ${infoTypeCodeList}" th:value="${infoTypeCode.idInfoTypeCode}"
+                    th:text="${infoTypeCode.code}"></option>
+        </select>
+    </p>
+    <p>
+        <label>Дата ОД, к которой относятся данные Справочника БИК</label>
+        <input type="date" th:value="${ed807.businessDay}" name="businessDay">
+    </p>
+    <p>
+        <label>Номер версии Справочника БИК в течение операционного дня</label>
+        <input type="text" th:value="${ed807.directoryVersion}" name="directoryVersion">
+    </p>
+    <button type="submit" class="btn btn-success">Изменить</button>
+</form>
+</body>
+</html>

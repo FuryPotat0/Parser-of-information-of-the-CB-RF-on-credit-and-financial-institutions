@@ -8,48 +8,43 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "ACCOUNTS")
 @NoArgsConstructor
 @Getter
 @Setter
 public class AccountsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_accounts")
+    @Column(name = "ID_ACCOUNTS")
     private Long idAccounts;
 
-    @Column(name = "account", length = 20, nullable = false)
+    @Column(name = "ACCOUNT", length = 20, nullable = false)
     private String account;
 
-    @Column(name = "ck", length = 2)
+    @Column(name = "CK", length = 2)
     private String ck;
 
     @ManyToOne
-    @JoinColumn(name = "id_account_status")
+    @JoinColumn(name = "ID_ACCOUNT_STATUS")
     private AccountStatusEntity accountStatus;
 
     @ManyToOne
-    @JoinColumn(name = "id_regulation_account_type")
+    @JoinColumn(name = "ID_REGULATION_ACCOUNT_TYPE")
     private RegulationAccountTypeEntity regulationAccountType;
 
-    @Column(name = "account_cbrbic", length = 9, nullable = false)
+    @Column(name = "ACCOUNT_CBRBIC", length = 9, nullable = false)
     private String accountCbrbic;
 
-    @Column(name = "date_in", nullable = false)
+    @Column(name = "DATE_IN", nullable = false)
     private Timestamp dateIn;
 
-    @Column(name = "date_out")
+    @Column(name = "DATE_OUT")
     private Timestamp dateOut;
 
     @ManyToOne
-    @JoinColumn(name = "id_bic_directory_entry")
+    @JoinColumn(name = "ID_BIC_DIRECTORY_ENTRY")
     private BicDirectoryEntryEntity bicDirectoryEntry;
-
-    @OneToMany(mappedBy = "accounts")
-    private List<AccRstrListEntity> accRsrtListEntities = new ArrayList<>();
 }
 

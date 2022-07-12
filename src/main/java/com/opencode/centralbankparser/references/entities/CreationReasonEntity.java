@@ -14,13 +14,13 @@ import javax.persistence.*;
 public class CreationReasonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_creation_reason")
+    @Column(name = "ID_CREATION_REASON")
     private Long idCreationReason;
 
-    @Column(name = "code", nullable = false, unique = true, length = 4)
+    @Column(name = "CODE", nullable = false, unique = true, length = 4)
     private String code;
 
-    @Column(name = "name", length = 500, nullable = false)
+    @Column(name = "NAME", length = 500, nullable = false)
     private String name;
 }
 

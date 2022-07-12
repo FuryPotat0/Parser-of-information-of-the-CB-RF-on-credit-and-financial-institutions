@@ -77,7 +77,7 @@ public class SrvcsDao implements DaoReferencesInterface<SrvcsEntity> {
     @Override
     public Optional<SrvcsEntity> findByCode(String code) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
-            String hql = "FROM SrvcsEntity WHERE code = ?0";
+            String hql = "FROM SrvcsEntity WHERE CODE = ?0";
             Query query = session.createQuery(hql).setParameter(0, code);
             SrvcsEntity srvcs = (SrvcsEntity) query.getSingleResult();
             LOGGER.info("Found Srvcs with code={} and id={}", code, srvcs.getIdSrvcs());

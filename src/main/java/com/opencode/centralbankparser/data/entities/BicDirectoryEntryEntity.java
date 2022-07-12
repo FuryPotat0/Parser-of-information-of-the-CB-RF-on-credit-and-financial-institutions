@@ -6,38 +6,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "bic_directory_entry")
+@Table(name = "BIC_DIRECTORY_ENTRY")
 @NoArgsConstructor
 @Setter
 @Getter
 public class BicDirectoryEntryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_bic_directory_entry")
+    @Column(name = "ID_BIC_DIRECTORY_ENTRY")
     private Long idBicDirectoryEntry;
 
-    @Column(name = "bic", length = 9, nullable = false)
+    @Column(name = "BIC", length = 9, nullable = false)
     private String bic;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_change_type")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_CHANGE_TYPE")
     private ChangeTypeEntity changeType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ed")
+    @JoinColumn(name = "ID_ED")
     private Ed807Entity ed807;
-
-    @OneToMany(mappedBy = "bicDirectoryEntryEntity")
-    private List<SwbicsEntity> swibcsEntities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bicDirectoryEntry")
-    private List<AccountsEntity> accounts = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bicDirectoryEntry")
-    private List<ParticipantInfoEntity> participantInfoEntities = new ArrayList<>();
 }
 

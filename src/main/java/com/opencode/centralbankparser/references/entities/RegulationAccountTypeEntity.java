@@ -7,20 +7,20 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "regulation_account_type")
+@Table(name = "REGULATION_ACCOUNT_TYPE")
 @NoArgsConstructor
 @Getter
 @Setter
 public class RegulationAccountTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_regulation_account_type")
+    @Column(name = "ID_REGULATION_ACCOUNT_TYPE")
     private Long idRegulationAccountType;
 
-    @Column(name = "code", nullable = false, unique = true, length = 4)
+    @Column(name = "CODE", nullable = false, unique = true, length = 4)
     private String code;
 
-    @Column(name = "name", length = 300, nullable = false)
+    @Column(name = "NAME", length = 300, nullable = false)
     private String name;
 }
 

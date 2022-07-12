@@ -13,14 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class InfoTypeCodeEntity {
     @Id
-    @Column(name = "id_info_type_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID_INFO_TYPE_CODE")
     private Long idInfoTypeCode;
 
-    @Column(name = "code", nullable = false, unique = true, length = 4)
+    @Column(name = "CODE", nullable = false, unique = true, length = 4)
     private String code;
 
-    @Column(name = "name", length = 300, nullable = false)
+    @Column(name = "NAME", length = 300, nullable = false)
     private String name;
 }
 

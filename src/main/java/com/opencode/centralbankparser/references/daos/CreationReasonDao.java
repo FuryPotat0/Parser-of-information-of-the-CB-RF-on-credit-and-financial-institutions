@@ -77,7 +77,7 @@ public class CreationReasonDao implements DaoReferencesInterface<CreationReasonE
     @Override
     public Optional<CreationReasonEntity> findByCode(String code) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
-            String hql = "FROM CreationReasonEntity WHERE code = ?0";
+            String hql = "FROM CreationReasonEntity WHERE CODE = ?0";
             Query query = session.createQuery(hql).setParameter(0, code);
             CreationReasonEntity creationReason = (CreationReasonEntity) query.getSingleResult();
             LOGGER.info("Found CreationReason with code={} and id={}", code, creationReason.getIdCreationReason());

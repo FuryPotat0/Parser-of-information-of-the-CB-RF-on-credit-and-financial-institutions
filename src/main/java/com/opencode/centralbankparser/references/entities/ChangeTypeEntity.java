@@ -7,20 +7,20 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "change_type")
+@Table(name = "CHANGE_TYPE")
 @NoArgsConstructor
 @Getter
 @Setter
 public class ChangeTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_change_type")
+    @Column(name = "ID_CHANGE_TYPE")
     private Long idChangeType;
 
-    @Column(name = "code", nullable = false, unique = true, length = 4)
+    @Column(name = "CODE", nullable = false, unique = true, length = 4)
     private String code;
 
-    @Column(name = "name", length = 300, nullable = false)
+    @Column(name = "NAME", length = 300, nullable = false)
     private String name;
 }
 

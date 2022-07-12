@@ -12,74 +12,73 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "participant_info")
+@Table(name = "PARTICIPANT_INFO")
 @NoArgsConstructor
 @Getter
 @Setter
 public class ParticipantInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_participant_info")
+    @Column(name = "ID_PARTICIPANT_INFO")
     public Long idParticipantInfo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_bic_directory_entry", nullable = false)
-    private BicDirectoryEntryEntity bicDirectoryEntry;
-
-    @Column(name = "name_p", length = 160, nullable = false)
+    @Column(name = "NAME_P", length = 160, nullable = false)
     private String nameP;
 
-    @Column(name = "eng_name", length = 140)
+    @Column(name = "ENG_NAME", length = 140)
     private String engName;
 
-    @Column(name = "reg_n", length = 9)
+    @Column(name = "REG_N", length = 9)
     private String regN;
 
-    @Column(name = "cntr_cd", length = 2)
+    @Column(name = "CNTR_CD", length = 2)
     private String cntrCd;
 
-    @Column(name = "rgn", length = 2, nullable = false)
+    @Column(name = "RGN", length = 2, nullable = false)
     private String rgn;
 
-    @Column(name = "ind", length = 6)
+    @Column(name = "IND", length = 6)
     private String ind;
 
-    @Column(name = "tnp", length = 5)
+    @Column(name = "TNP", length = 5)
     private String tnp;
 
-    @Column(name = "nnp", length = 25)
+    @Column(name = "NNP", length = 27)
     private String nnp;
 
-    @Column(name = "adr", length = 260)
+    @Column(name = "ADR", length = 260)
     private String adr;
 
-    @Column(name = "prnt_bic", length = 9)
+    @Column(name = "PRNT_BIC", length = 9)
     private String prntBic;
 
-    @Column(name = "date_in", nullable = false)
+    @Column(name = "DATE_IN", nullable = false)
     private Timestamp dateIn;
 
-    @Column(name = "date_out")
+    @Column(name = "DATE_OUT")
     private Timestamp dateOut;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pt_type", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_PT_TYPE", nullable = false)
     private PtTypeEntity ptType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_srvcs", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_SRVCS", nullable = false)
     private SrvcsEntity srvcs;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_xch_type", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_XCH_TYPE", nullable = false)
     private XchTypeEntity xchType;
 
-    @Column(name = "uid", length = 10, nullable = false)
+    @Column(name = "UID", length = 10, nullable = false)
     private String uid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_participant_status", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_PARTICIPANT_STATUS", nullable = false)
     private ParticipantStatusEntity participantStatus;
 
+    @OneToOne
+    @JoinColumn(name = "id_bic_directory_entry")
+    private BicDirectoryEntryEntity bicDirectoryEntryEntity;
 }
 

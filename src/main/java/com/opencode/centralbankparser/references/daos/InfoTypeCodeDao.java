@@ -75,7 +75,7 @@ public class InfoTypeCodeDao implements DaoReferencesInterface<InfoTypeCodeEntit
     @Override
     public Optional<InfoTypeCodeEntity> findByCode(String code) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
-            String hql = "FROM InfoTypeCodeEntity WHERE code = ?0";
+            String hql = "FROM InfoTypeCodeEntity WHERE CODE = ?0";
             Query query = session.createQuery(hql).setParameter(0, code);
             InfoTypeCodeEntity infoTypeCode = (InfoTypeCodeEntity) query.getSingleResult();
             LOGGER.info("Found InfoTypeCode with code={} and id={}", code, infoTypeCode.getIdInfoTypeCode());

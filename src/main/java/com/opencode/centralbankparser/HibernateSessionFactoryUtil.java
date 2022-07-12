@@ -41,8 +41,7 @@ public class HibernateSessionFactoryUtil {
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
-//                LOGGER.error(e.toString());
-//                LOGGER.error(e.getMessage());
+                e.printStackTrace();
             }
         }
         return sessionFactory;

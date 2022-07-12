@@ -7,25 +7,24 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "swbics")
+@Table(name = "SWBICS")
 @NoArgsConstructor
 @Getter
 @Setter
 public class SwbicsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_swbics")
+    @Column(name = "ID_SWBICS")
     private Long idSwbics;
 
-    @Column(name = "swibcs", length = 11, nullable = false)
+    @Column(name = "SWBICS", length = 11, nullable = false)
     private String swbics;
 
-    @Column(name = "default_swbic", nullable = false)
+    @Column(name = "DEFAULT_SWBIC", nullable = false)
     private boolean defaultSwbic;
 
     @ManyToOne
-    @JoinColumn(name = "id_bic_directory_entry")
+    @JoinColumn(name = "ID_BIC_DIRECTORY_ENTRY")
     private BicDirectoryEntryEntity bicDirectoryEntryEntity;
-
 }
 

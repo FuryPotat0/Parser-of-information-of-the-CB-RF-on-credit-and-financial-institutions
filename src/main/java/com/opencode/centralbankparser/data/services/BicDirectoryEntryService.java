@@ -42,5 +42,9 @@ public class BicDirectoryEntryService implements ServiceDataInterface<BicDirecto
     public void deleteAll() {
         dao.deleteAll();
     }
+
+    public List<BicDirectoryEntryEntity> findByEd807Id(Long edId){
+        return dao.findByEd807Id(edId);
+    }
 }
 

@@ -7,20 +7,20 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "xch_type")
+@Table(name = "XCH_TYPE")
 @NoArgsConstructor
 @Getter
 @Setter
 public class XchTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_xch_type")
+    @Column(name = "ID_XCH_TYPE")
     private Long idXchType;
 
-    @Column(name = "code", nullable = false, unique = true)
-    private Character code;
+    @Column(name = "CODE", nullable = false, unique = true, length = 1)
+    private String code;
 
-    @Column(name = "name", length = 300, nullable = false)
+    @Column(name = "NAME", length = 300, nullable = false)
     private String name;
 }
 

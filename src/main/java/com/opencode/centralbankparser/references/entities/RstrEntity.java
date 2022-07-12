@@ -7,20 +7,20 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rstr")
+@Table(name = "RSTR")
 @NoArgsConstructor
 @Getter
 @Setter
 public class RstrEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_rstr")
+    @Column(name = "ID_RSTR")
     private Long idRstr;
 
-    @Column(name = "code", nullable = false, unique = true, length = 4)
+    @Column(name = "CODE", nullable = false, unique = true, length = 4)
     private String code;
 
-    @Column(name = "name", length = 300, nullable = false)
+    @Column(name = "NAME", length = 300, nullable = false)
     private String name;
 }
 
